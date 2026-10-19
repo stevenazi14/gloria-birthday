@@ -70,3 +70,96 @@ wishButton.addEventListener('click', () => {
   wishResponse.classList.add('visible');
   celebrate();
 });
+
+const musicButton = document.querySelector('#music-button');
+const notes = [523.25, 659.25, 783.99, 659.25, 587.33, 783.99];
+let audioContext;
+let musicTimer;
+
+function playChime() {
+  if (!audioContext || audioContext.state !== 'running') return;
+  const start = audioContext.currentTime;
+  notes.forEach((frequency, index) => {
+    const oscillator = audioContext.createOscillator();
+    const volume = audioContext.createGain();
+    const noteStart = start + index * .36;
+    oscillator.type = 'sine';
+    oscillator.frequency.value = frequency;
+    volume.gain.setValueAtTime(.0001, noteStart);
+    volume.gain.exponentialRampToValueAtTime(.035, noteStart + .04);
+    volume.gain.exponentialRampToValueAtTime(.0001, noteStart + .54);
+    oscillator.connect(volume);
+    volume.connect(audioContext.destination);
+    oscillator.start(noteStart);
+    oscillator.stop(noteStart + .56);
+  });
+}
+
+musicButton.addEventListener('click', async () => {
+  if (musicTimer) {
+    window.clearInterval(musicTimer);
+    musicTimer = undefined;
+    musicButton.setAttribute('aria-pressed', 'false');
+    musicButton.setAttribute('aria-label', 'Play soft birthday music');
+    musicButton.querySelector('.music-label').textContent = 'A little music';
+    await audioContext.close();
+    audioContext = undefined;
+    return;
+  }
+  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextClass) {
+    musicButton.querySelector('.music-label').textContent = 'Audio unavailable';
+    return;
+  }
+  audioContext = new AudioContextClass();
+  await audioContext.resume();
+  const playPhrase = () => {
+    if (audioContext.state !== 'running') return;
+    playChime();
+  };
+  playPhrase();
+  musicTimer = window.setInterval(playPhrase, 3100);
+  musicButton.setAttribute('aria-pressed', 'true');
+  musicButton.setAttribute('aria-label', 'Stop soft birthday music');
+  musicButton.querySelector('.music-label').textContent = 'Music on · tap to stop';
+});
+
+const birthdayNotes = [
+  'You make ordinary days feel like a celebration.',
+  'Keep taking up space and shining exactly as you are.',
+  'The world is more fun with you in it, Gloria.',
+  'Your laugh, your style, your whole you — all worth celebrating.',
+  'Whatever this year brings, your number one is cheering for you.'
+];
+const noteButton = document.querySelector('#note-button');
+const secretNote = document.querySelector('#secret-note');
+noteButton.addEventListener('click', () => {
+  const nextIndex = Math.floor(Math.random() * birthdayNotes.length);
+  secretNote.textContent = birthdayNotes[nextIndex];
+  secretNote.classList.remove('note-pop');
+  void secretNote.offsetWidth;
+  secretNote.classList.add('note-pop');
+});
+
+const shareButton = document.querySelector('#share-button');
+const shareStatus = document.querySelector('#share-status');
+shareButton.addEventListener('click', async () => {
+  const shareData = {
+    title: 'A little birthday magic for Gloria',
+    text: 'Happy birthday, Gloria Kaveza! A little something from your number one, the champion Steve Azi.',
+    url: window.location.href
+  };
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+      shareStatus.textContent = 'Thanks for sharing the birthday magic!';
+    } else if (navigator.clipboard) {
+      await navigator.clipboard.writeText(window.location.href);
+      shareStatus.textContent = 'Link copied — send the birthday magic along!';
+    } else {
+      shareStatus.textContent = window.location.href;
+    }
+  } catch (error) {
+    if (error.name !== 'AbortError') shareStatus.textContent = 'Copy the page link from your browser to share it.';
+  }
+});

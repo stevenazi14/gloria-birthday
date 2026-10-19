@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-extras.css">
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -19,7 +20,7 @@
     <span class="star star-7">✧</span><span class="star star-8">✦</span><span class="star star-9">·</span>
     <span class="star star-10">✧</span><span class="star star-11">·</span><span class="star star-12">✦</span>
   </div>
-  <header class="topbar"><a class="wordmark" href="#home" aria-label="Gloria's birthday page">a little magic <span>✳</span></a><span class="top-note">MADE WITH LOVE, JUST FOR YOU</span></header>
+  <header class="topbar"><a class="wordmark" href="#home" aria-label="Gloria's birthday page">a little magic <span>✳</span></a><span class="top-note">MADE WITH LOVE, JUST FOR YOU</span><button class="music-button" id="music-button" type="button" aria-pressed="false" aria-label="Play soft birthday music"><span class="music-icon" aria-hidden="true">♫</span><span class="music-label">A little music</span></button></header>
 
   <main>
     <section class="hero" id="home" aria-labelledby="hero-title">
@@ -51,6 +52,22 @@
       </article>
     </section>
 
+    <section class="memory-section" id="memories" aria-labelledby="memory-title">
+      <div class="section-kicker"><span>✳</span> A LITTLE GLIMPSE OF YOU <span>✳</span></div>
+      <h2 class="section-title" id="memory-title">Gloria, in her element</h2>
+      <p class="memory-intro">A few lovely seconds of the birthday girl, being her brilliant self.</p>
+      <div class="memory-frame">
+        <div class="memory-ornament memory-ornament-top" aria-hidden="true">✧</div>
+        <video class="memory-video" controls playsinline preload="metadata" poster="assets/gloria-poster.jpg" aria-label="Birthday video moments of Gloria">
+          <source src="assets/gloria-moments.mp4" type="video/mp4">
+          Your browser can't play this video. Try opening the page in an up-to-date browser.
+        </video>
+        <div class="memory-caption"><span class="caption-star">✳</span><span>Unapologetically Gloria. Always a star.</span><span class="caption-star">✳</span></div>
+        <div class="memory-ornament memory-ornament-bottom" aria-hidden="true">✧</div>
+      </div>
+      <p class="memory-footnote">Best enjoyed with the sound on <span aria-hidden="true">♡</span></p>
+    </section>
+
     <section class="wishes-section" aria-labelledby="wishes-title">
       <div class="section-kicker"><span>✳</span> THREE LITTLE WISHES <span>✳</span></div>
       <h2 class="section-title" id="wishes-title">For your next chapter</h2>
@@ -59,6 +76,15 @@
         <article class="wish-card wish-peach"><div class="wish-icon" aria-hidden="true">✧</div><span class="wish-number">02 — ROOM TO GROW</span><h3>Dreams taking flight</h3><p>May this be the year you surprise even yourself with what you can do.</p></article>
         <article class="wish-card wish-green"><div class="wish-icon" aria-hidden="true">♡</div><span class="wish-number">03 — ALWAYS</span><h3>Love all around you</h3><p>Today and every day, may you feel how much you mean to people.</p></article>
       </div>
+    </section>
+
+    <section class="secret-section" aria-labelledby="secret-title">
+      <div class="secret-card">
+        <div class="secret-icon" aria-hidden="true">✉</div>
+        <div class="secret-copy"><div class="section-kicker">P.S. A TINY REMINDER</div><h2 id="secret-title">You've got a fan club.</h2><p id="secret-note" aria-live="polite">And the president is your number one. Tap for another little reminder.</p></div>
+        <button class="button button-outline" id="note-button" type="button">Open a note <span aria-hidden="true">↗</span></button>
+      </div>
+      <button class="share-button" id="share-button" type="button"><span aria-hidden="true">↗</span><span id="share-status" aria-live="polite">Share this little bit of birthday magic</span></button>
     </section>
 
     <section class="cake-section" aria-labelledby="cake-title">

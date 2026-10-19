@@ -1,0 +1,35 @@
+/* Gloria's video and extra birthday interactions */
+.topbar{gap:16px}
+.music-button{display:inline-flex;align-items:center;gap:8px;margin-left:auto;padding:9px 13px;border:1px solid #e8c98745;border-radius:999px;background:#ffffff06;color:#ead7a9;font:500 10px var(--sans);cursor:pointer;transition:background .2s,border-color .2s}
+.music-button:hover,.music-button[aria-pressed="true"]{background:#e8c98716;border-color:#e8c987a0}
+.music-icon{font-size:15px;line-height:1}
+.music-button[aria-pressed="true"] .music-icon{animation:music-bob .65s ease-in-out infinite alternate}
+@keyframes music-bob{to{transform:translateY(-3px) rotate(8deg)}}
+.memory-section{position:relative;z-index:1;padding:80px 22px 95px;text-align:center;background:linear-gradient(180deg,#1b1724,#211b29 50%,#1b1724)}
+.memory-section .section-title{margin:18px 0 10px}
+.memory-intro{margin:0 auto 31px;color:#c0b5c3;font-size:13px;line-height:1.8}
+.memory-frame{position:relative;width:min(100%,375px);margin:0 auto;padding:12px;background:linear-gradient(145deg,#e8c987,#bb8a59 48%,#f0d7a8);box-shadow:0 20px 65px #0a0811a3,0 0 50px #e8c9870d}
+.memory-video{display:block;width:100%;max-height:70svh;aspect-ratio:464/832;object-fit:cover;background:#100e16}
+.memory-video:focus-visible{outline:3px solid #fff0cf;outline-offset:4px}
+.memory-caption{display:flex;align-items:center;justify-content:center;gap:9px;min-height:45px;padding:10px 4px 0;color:#312531;font:italic 15px var(--serif)}
+.caption-star{color:#fff2ce;font-size:12px}
+.memory-ornament{position:absolute;z-index:1;color:#fff1d4;font-size:17px;pointer-events:none}
+.memory-ornament-top{top:5px;left:5px}.memory-ornament-bottom{right:5px;bottom:42px}
+.memory-footnote{margin:16px 0 0;color:#a99bad;font:italic 13px var(--serif)}
+.memory-footnote span{color:var(--pink)}
+.secret-section{position:relative;z-index:1;padding:38px 22px 74px;background:#1b1724}
+.secret-card{width:min(100%,870px);margin:auto;padding:27px 30px;display:grid;grid-template-columns:58px 1fr auto;align-items:center;gap:22px;border:1px solid #e8c98736;background:linear-gradient(110deg,#2b2331,#211c29)}
+.secret-icon{width:50px;height:50px;border:1px solid #efa8b578;border-radius:50%;display:grid;place-items:center;color:var(--pink);font-size:22px}
+.secret-copy .section-kicker{justify-content:flex-start;font-size:8px}
+.secret-copy h2{margin:7px 0 5px;font:500 25px var(--serif)}
+.secret-copy p{margin:0;color:#bdb2c0;font-size:12px;line-height:1.6}
+.secret-copy p.note-pop{animation:note-pop .35s ease}
+@keyframes note-pop{from{opacity:.25;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.button-outline{padding:13px 15px;border:1px solid #e8c98773;color:#f1d89e;background:transparent;white-space:nowrap}
+.button-outline:hover{background:#e8c98712}
+.share-button{display:flex;align-items:center;gap:9px;margin:19px auto 0;padding:10px 14px;border:0;background:transparent;color:#bcafc1;font:500 10px var(--sans);cursor:pointer;transition:color .2s}
+.share-button:hover{color:var(--gold)}
+.share-button span{font-size:14px;color:var(--gold)}
+.share-button:focus-visible,.music-button:focus-visible,.button-outline:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+@media(max-width:700px){.top-note{display:none}.topbar{gap:8px}.music-button{padding:8px 11px}.memory-section{padding-top:67px;padding-bottom:74px}.memory-frame{width:min(100%,340px);padding:9px}.secret-section{padding:25px 18px 58px}.secret-card{grid-template-columns:43px 1fr;padding:21px 18px;gap:13px}.secret-icon{width:40px;height:40px;font-size:18px}.secret-copy h2{font-size:22px}.secret-copy p{font-size:11px}.button-outline{grid-column:1/-1;justify-self:center;padding:12px 17px}.share-button{text-align:center;line-height:1.5}}
+@media(prefers-reduced-motion:reduce){.music-button[aria-pressed="true"] .music-icon{animation:none}}
