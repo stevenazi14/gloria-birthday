@@ -1,0 +1,13 @@
+.memory-showcase{width:min(100%,820px);margin:33px auto 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:clamp(12px,3vw,24px)}
+.portrait-frame{position:relative;width:min(100%,375px);justify-self:center;margin:0;padding:12px;background:linear-gradient(145deg,#f1d69b,#b98456 47%,#f1d69b);box-shadow:0 20px 65px #0a0811a3,0 0 50px #e8c9870d}
+.portrait-image-wrap{position:relative;overflow:hidden;background:#211b29}
+.portrait-image{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;object-position:center 42%;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .6s;filter:saturate(.96)}
+.portrait-frame:hover .portrait-image{transform:scale(1.035);filter:saturate(1.08)}
+.portrait-image-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#21172a25,transparent 33%,transparent 71%,#17121e52);pointer-events:none}
+.portrait-badge{position:absolute;z-index:1;top:14px;left:14px;display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #f4e2bd99;background:#211b29ad;color:#fff4dd;font-size:8px;font-weight:700;letter-spacing:.15em;backdrop-filter:blur(8px)}
+.portrait-badge span{color:#f3c5c4;font-size:11px}
+.portrait-caption{display:flex;align-items:center;justify-content:center;gap:9px;min-height:45px;padding:10px 4px 0;color:#312531;font:italic 15px var(--serif);text-align:center}
+.portrait-caption span:last-child{color:#fff4dd;font-size:12px}
+.memory-showcase .memory-frame{width:min(100%,375px);justify-self:center}
+@media(max-width:700px){.memory-showcase{grid-template-columns:minmax(0,1fr);gap:18px;max-width:400px;margin-top:26px}.portrait-frame,.memory-showcase .memory-frame{width:min(100%,340px)}.portrait-frame{padding:9px}.portrait-caption{min-height:41px;font-size:14px}.portrait-badge{top:12px;left:12px}}
+@media(prefers-reduced-motion:reduce){.portrait-image{transition:none}}

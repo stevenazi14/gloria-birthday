@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="style-extras.css">
+  <link rel="stylesheet" href="portrait.css">
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -57,7 +58,15 @@
       <div class="section-kicker"><span>✳</span> A LITTLE GLIMPSE OF YOU <span>✳</span></div>
       <h2 class="section-title" id="memory-title">Gloria, in her element</h2>
       <p class="memory-intro">A few lovely seconds of the birthday girl, being her brilliant self.</p>
-      <div class="memory-frame">
+      <div class="memory-showcase">
+        <figure class="portrait-frame scroll-reveal">
+          <div class="portrait-image-wrap">
+            <img class="portrait-image" src="assets/gloria-portrait.jpeg" alt="Gloria taking a mirror selfie in a blue patterned blouse and striped trousers" fetchpriority="high">
+            <span class="portrait-badge">THE BIRTHDAY GIRL <span aria-hidden="true">✳</span></span>
+          </div>
+          <figcaption class="portrait-caption"><span>Effortlessly, wonderfully Gloria</span><span aria-hidden="true">♡</span></figcaption>
+        </figure>
+        <div class="memory-frame">
         <div class="memory-ornament memory-ornament-top" aria-hidden="true">✧</div>
         <video class="memory-video" controls playsinline preload="metadata" poster="assets/gloria-poster.jpg" aria-label="Birthday video moments of Gloria">
           <source src="assets/gloria-moments.mp4" type="video/mp4">
@@ -65,6 +74,7 @@
         </video>
         <div class="memory-caption"><span class="caption-star">✳</span><span>Unapologetically Gloria. Always a star.</span><span class="caption-star">✳</span></div>
         <div class="memory-ornament memory-ornament-bottom" aria-hidden="true">✧</div>
+        </div>
       </div>
       <p class="memory-footnote">Best enjoyed with the sound on <span aria-hidden="true">♡</span></p>
       <div class="gallery-heading"><span class="gallery-rule"></span><span>Three little snapshots</span><span class="gallery-rule"></span></div>

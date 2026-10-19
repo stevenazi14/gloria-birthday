@@ -240,7 +240,7 @@ window.addEventListener('scroll', updateScrollProgress, { passive: true });
 window.addEventListener('resize', updateScrollProgress);
 updateScrollProgress();
 
-const revealItems = document.querySelectorAll('.letter-card,.memory-frame,.memory-gallery,.memory-tile,.wish-card,.balloon-card,.secret-card,.cake-button,.final-signoff');
+const revealItems = document.querySelectorAll('.letter-card,.memory-frame,.memory-gallery,.memory-tile,.portrait-frame,.wish-card,.balloon-card,.secret-card,.cake-button,.final-signoff');
 document.documentElement.classList.add('js');
 if ('IntersectionObserver' in window) {
   const revealObserver = new IntersectionObserver(entries => {
