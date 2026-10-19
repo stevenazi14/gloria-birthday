@@ -14,6 +14,7 @@
   <script src="script.js" defer></script>
 </head>
 <body>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"><span></span></div>
   <div class="sky" aria-hidden="true">
     <span class="star star-1">✦</span><span class="star star-2">✧</span><span class="star star-3">·</span>
     <span class="star star-4">✦</span><span class="star star-5">✧</span><span class="star star-6">·</span>
@@ -66,6 +67,19 @@
         <div class="memory-ornament memory-ornament-bottom" aria-hidden="true">✧</div>
       </div>
       <p class="memory-footnote">Best enjoyed with the sound on <span aria-hidden="true">♡</span></p>
+      <div class="gallery-heading"><span class="gallery-rule"></span><span>Three little snapshots</span><span class="gallery-rule"></span></div>
+      <div class="memory-gallery" aria-label="Photo gallery of Gloria">
+        <button class="memory-tile" type="button" data-photo-index="0" aria-label="View Gloria's first photo">
+          <img src="assets/gloria-look-one.jpg" alt="Gloria in a white top, looking at the camera" loading="lazy"><span class="tile-caption">Her own kind of magic <span aria-hidden="true">↗</span></span>
+        </button>
+        <button class="memory-tile" type="button" data-photo-index="1" aria-label="View Gloria's second photo">
+          <img src="assets/gloria-look-two.jpg" alt="Gloria wearing sunglasses and smiling" loading="lazy"><span class="tile-caption">Always the main character <span aria-hidden="true">↗</span></span>
+        </button>
+        <button class="memory-tile" type="button" data-photo-index="2" aria-label="View Gloria's third photo">
+          <img src="assets/gloria-look-three.jpg" alt="Gloria in a light jacket, smiling" loading="lazy"><span class="tile-caption">That unmistakable glow <span aria-hidden="true">↗</span></span>
+        </button>
+      </div>
+      <p class="gallery-hint">Tap a photo to see it up close <span aria-hidden="true">✧</span></p>
     </section>
 
     <section class="wishes-section" aria-labelledby="wishes-title">
@@ -75,6 +89,23 @@
         <article class="wish-card wish-lilac"><div class="wish-icon" aria-hidden="true">☼</div><span class="wish-number">01 — MORE OF THIS</span><h3>Joy that finds you</h3><p>In the little everyday moments and the big, unforgettable ones.</p></article>
         <article class="wish-card wish-peach"><div class="wish-icon" aria-hidden="true">✧</div><span class="wish-number">02 — ROOM TO GROW</span><h3>Dreams taking flight</h3><p>May this be the year you surprise even yourself with what you can do.</p></article>
         <article class="wish-card wish-green"><div class="wish-icon" aria-hidden="true">♡</div><span class="wish-number">03 — ALWAYS</span><h3>Love all around you</h3><p>Today and every day, may you feel how much you mean to people.</p></article>
+      </div>
+    </section>
+
+    <section class="balloon-section" aria-labelledby="balloon-title">
+      <div class="balloon-card">
+        <div class="section-kicker"><span>✳</span> A SMALL BIRTHDAY GAME <span>✳</span></div>
+        <h2 id="balloon-title">Pop a balloon, pick a wish.</h2>
+        <p>Tap a balloon and let a little birthday magic out.</p>
+        <div class="balloon-row" id="balloon-row">
+          <button class="birthday-balloon balloon-rose" type="button" data-message="A whole year of little wins is headed your way." aria-label="Pop a pink balloon for a birthday wish"><span></span></button>
+          <button class="birthday-balloon balloon-gold" type="button" data-message="May something wonderful surprise you this year." aria-label="Pop a gold balloon for a birthday wish"><span></span></button>
+          <button class="birthday-balloon balloon-lilac" type="button" data-message="Your next chapter is going to have some beautiful moments." aria-label="Pop a lilac balloon for a birthday wish"><span></span></button>
+          <button class="birthday-balloon balloon-mint" type="button" data-message="Sending you extra love from your number one, always." aria-label="Pop a mint balloon for a birthday wish"><span></span></button>
+          <button class="birthday-balloon balloon-peach" type="button" data-message="Keep shining, Gloria. You make it look easy." aria-label="Pop a peach balloon for a birthday wish"><span></span></button>
+        </div>
+        <p class="balloon-message" id="balloon-message" aria-live="polite">Your birthday wishes are waiting ✨</p>
+        <button class="balloon-reset" id="balloon-reset" type="button" hidden>Fill the sky again ↻</button>
       </div>
     </section>
 
@@ -103,6 +134,15 @@
       <div class="final-from">From number one, <strong>the champion Steve Azi</strong></div>
     </section>
   </main>
+  <dialog class="photo-dialog" id="photo-dialog" aria-label="Gloria's photo">
+    <div class="photo-dialog-frame">
+      <button class="dialog-close" type="button" aria-label="Close photo viewer">×</button>
+      <button class="dialog-arrow dialog-prev" type="button" aria-label="Previous photo">‹</button>
+      <figure><img id="dialog-photo" alt=""><figcaption id="dialog-caption"></figcaption></figure>
+      <button class="dialog-arrow dialog-next" type="button" aria-label="Next photo">›</button>
+      <p class="dialog-count" id="dialog-count" aria-live="polite"></p>
+    </div>
+  </dialog>
   <footer>MADE ESPECIALLY FOR GLORIA <span>✳</span> WITH LOVE FROM STEVE</footer>
   <canvas id="confetti" aria-hidden="true"></canvas>
 </body>

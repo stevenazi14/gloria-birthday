@@ -163,3 +163,98 @@ shareButton.addEventListener('click', async () => {
     if (error.name !== 'AbortError') shareStatus.textContent = 'Copy the page link from your browser to share it.';
   }
 });
+
+const photoList = [
+  { src: 'assets/gloria-look-one.jpg', alt: "Gloria in a white top, looking at the camera", caption: 'Her own kind of magic' },
+  { src: 'assets/gloria-look-two.jpg', alt: 'Gloria wearing sunglasses and smiling', caption: 'Always the main character' },
+  { src: 'assets/gloria-look-three.jpg', alt: 'Gloria in a light jacket, smiling', caption: 'That unmistakable glow' }
+];
+const photoDialog = document.querySelector('#photo-dialog');
+const dialogPhoto = document.querySelector('#dialog-photo');
+const dialogCaption = document.querySelector('#dialog-caption');
+const dialogCount = document.querySelector('#dialog-count');
+let currentPhoto = 0;
+
+function showPhoto(index) {
+  currentPhoto = (index + photoList.length) % photoList.length;
+  const photo = photoList[currentPhoto];
+  dialogPhoto.src = photo.src;
+  dialogPhoto.alt = photo.alt;
+  dialogCaption.textContent = photo.caption;
+  dialogCount.textContent = `${currentPhoto + 1} / ${photoList.length}`;
+}
+
+document.querySelectorAll('.memory-tile').forEach(tile => {
+  tile.addEventListener('click', () => {
+    showPhoto(Number(tile.dataset.photoIndex));
+    photoDialog.showModal();
+  });
+});
+document.querySelector('.dialog-close').addEventListener('click', () => photoDialog.close());
+document.querySelector('.dialog-prev').addEventListener('click', () => showPhoto(currentPhoto - 1));
+document.querySelector('.dialog-next').addEventListener('click', () => showPhoto(currentPhoto + 1));
+photoDialog.addEventListener('click', event => {
+  if (event.target === photoDialog) photoDialog.close();
+});
+photoDialog.addEventListener('keydown', event => {
+  if (event.key === 'ArrowLeft') showPhoto(currentPhoto - 1);
+  if (event.key === 'ArrowRight') showPhoto(currentPhoto + 1);
+});
+
+const balloons = [...document.querySelectorAll('.birthday-balloon')];
+const balloonMessage = document.querySelector('#balloon-message');
+const balloonReset = document.querySelector('#balloon-reset');
+balloons.forEach(balloon => {
+  balloon.addEventListener('click', () => {
+    if (balloon.classList.contains('popped')) return;
+    balloon.classList.add('popped');
+    balloon.setAttribute('aria-pressed', 'true');
+    balloonMessage.textContent = balloon.dataset.message;
+    celebrate();
+    if (balloons.every(item => item.classList.contains('popped'))) {
+      balloonReset.hidden = false;
+      balloonMessage.textContent = 'You let every wish out into the world. Happy birthday, Gloria!';
+    }
+  });
+});
+balloonReset.addEventListener('click', () => {
+  balloons.forEach(balloon => {
+    balloon.classList.remove('popped');
+    balloon.removeAttribute('aria-pressed');
+  });
+  balloonMessage.textContent = 'Your birthday wishes are waiting ✨';
+  balloonReset.hidden = true;
+});
+
+const progressBar = document.querySelector('#scroll-progress span');
+let progressFrame = 0;
+function updateScrollProgress() {
+  cancelAnimationFrame(progressFrame);
+  progressFrame = requestAnimationFrame(() => {
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+    progressBar.style.width = `${Math.min(progress, 100)}%`;
+  });
+}
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+window.addEventListener('resize', updateScrollProgress);
+updateScrollProgress();
+
+const revealItems = document.querySelectorAll('.letter-card,.memory-frame,.memory-gallery,.memory-tile,.wish-card,.balloon-card,.secret-card,.cake-button,.final-signoff');
+document.documentElement.classList.add('js');
+if ('IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: .12 });
+  revealItems.forEach(item => {
+    item.classList.add('scroll-reveal');
+    revealObserver.observe(item);
+  });
+} else {
+  revealItems.forEach(item => item.classList.add('is-visible'));
+}
